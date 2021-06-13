@@ -1,0 +1,15 @@
+{
+  "name": "blades-character-sheet",
+  "version": "1.0.0",
+  "description": "Character sheet web app for Blades in the Dark.",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js",
+	"build": ""
+  },
+  "author": "Justin Cardoza",
+  "license": "ISC",
+  "dependencies": {
+    "vue": "^2.6.14"
+  }
+}
