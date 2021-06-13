@@ -10,7 +10,18 @@
 </head>
 <body>
 	<div id="app">
-		{{characterName}}
+		<ul id="character-select">
+			<li v-for="(character, index) in characters" v-bind:onclick="currentCharacter = index">{{character.fullName}}</li>
+		</ul>
+		<div id="character-sheet">
+			<section>
+				<h1>Blades in the Dark</h1>
+				<div class="basic-field">
+					<label for="character-name">Name</label>
+					<input type="text" id="character-name" v-model="characters[currentCharacter].fullName" />
+				</div>
+			</section>
+		</div>
 	</div>
 </body>
 </html>
