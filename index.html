@@ -15,10 +15,16 @@
 			<li v-for="(character, index) in characters" v-on:click="currentCharacter = index" v-bind:key="index" v-bind:class="index === currentCharacter ? 'current' : ''">
 				{{character.fullName}}
 			</li>
+			<li v-on:click="addCharacter">+</li>
 		</ul>
 		<div id="character-sheet">
 			<section>
-				<h1>Blades in the Dark</h1>
+				<div class="spaced-row">
+					<h1>Blades in the Dark</h1>
+					<div id="status-indicator" v-if="!errorMessage && saveTimer">Saving...</div>
+					<div id="status-indicator" v-if="!errorMessage && !saveTimer">Saved</div>
+					<div id="error-message" v-if="errorMessage">Error: {{errorMessage}}</div>
+				</div>
 				<div class="row">
 					<div class="basic-field">
 						<label for="character-name">Name</label>
