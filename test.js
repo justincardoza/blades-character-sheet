@@ -7,6 +7,7 @@ const resources =
 	'/': 'index.html',
 	'/vue.js': 'node_modules/vue/dist/vue.js',
 	'/main.js': 'main.js',
+	'/main.css': 'main.css',
 };
 
 //process.stdin.setRawMode(true);

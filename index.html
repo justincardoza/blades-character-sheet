@@ -7,18 +7,91 @@
 	<title>Blades in the Dark Character Sheet</title>
 	<script type="text/javascript" src="/vue.js"></script>
 	<script type="text/javascript" src="/main.js"></script>
+	<link rel="stylesheet" type="text/css" href="/main.css" />
 </head>
 <body>
 	<div id="app">
 		<ul id="character-select">
-			<li v-for="(character, index) in characters" v-bind:onclick="currentCharacter = index">{{character.fullName}}</li>
+			<li v-for="(character, index) in characters" v-bind:onclick="currentCharacter = index" v-bind:class="index == currentCharacter ? 'current' : ''">{{character.fullName}}</li>
 		</ul>
 		<div id="character-sheet">
 			<section>
 				<h1>Blades in the Dark</h1>
-				<div class="basic-field">
-					<label for="character-name">Name</label>
-					<input type="text" id="character-name" v-model="characters[currentCharacter].fullName" />
+				<div class="row">
+					<div class="basic-field">
+						<label for="character-name">Name</label>
+						<input type="text" id="character-name" v-model="characters[currentCharacter].fullName" />
+					</div>
+					<div class="basic-field">
+						<label for="character-alias">Alias</label>
+						<input type="text" id="character-alias" v-model="characters[currentCharacter].alias" />
+					</div>
+				</div>
+				
+				<div class="basic-field wide-basic-field">
+					<label for="character-look">Look</label>
+					<input type="text" id="character-look" v-model="characters[currentCharacter].look" />
+				</div>
+				
+				<div class="basic-field wide-basic-field">
+					<label for="character-heritage">Heritage</label>
+					<div class="row">
+						<select v-model="characters[currentCharacter].heritageType">
+							<option value="akoros">Akoros</option>
+							<option value="dagger-isles">The Dagger Isles</option>
+							<option value="iruvia">Iruvia</option>
+							<option value="severos">Severos</option>
+							<option value="skovlan">Skovlan</option>
+							<option value="tycheros">Tycheros</option>
+						</select>
+						<input type="text" id="character-heritage" v-model="characters[currentCharacter].heritageDescription" />
+					</div>
+				</div>
+				
+				<div class="basic-field wide-basic-field">
+					<label for="character-background">Background</label>
+					<div class="row">
+						<select v-model="characters[currentCharacter].backgroundType">
+							<option value="academic">Academic</option>
+							<option value="labor">Labor</option>
+							<option value="law">Law</option>
+							<option value="trade">Trade</option>
+							<option value="military">Military</option>
+							<option value="noble">Noble</option>
+							<option value="underworld">Underworld</option>
+						</select>
+						<input type="text" id="character-background" v-model="characters[currentCharacter].backgroundDescription" />
+					</div>
+				</div>
+			</section>
+			
+			<section>
+				<div class="row">
+					<div class="row">
+						<h2>Stress</h2>
+						
+					</div>
+					
+					<div class="row">
+						<h2>Trauma</h2>
+					</div>
+				</div>
+			</section>
+			
+			<section>
+				<div class="row">
+					<div>
+						<h2>Harm</h2>
+					</div>
+					<div>
+						<section>
+							<h3>Healing</h3>
+						</section>
+						
+						<section>
+							<h3>Armor Uses</h3>
+						</section>
+					</div>
 				</div>
 			</section>
 		</div>
