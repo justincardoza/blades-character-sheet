@@ -12,7 +12,9 @@
 <body>
 	<div id="app">
 		<ul id="character-select">
-			<li v-for="(character, index) in characters" v-on:click="currentCharacter = index" v-bind:key="index" v-bind:class="index === currentCharacter ? 'current' : ''">{{character.fullName}}</li>
+			<li v-for="(character, index) in characters" v-on:click="currentCharacter = index" v-bind:key="index" v-bind:class="index === currentCharacter ? 'current' : ''">
+				{{character.fullName}}
+			</li>
 		</ul>
 		<div id="character-sheet">
 			<section>
@@ -105,6 +107,39 @@
 						</section>
 					</div>
 				</div>
+			</section>
+			
+			<section>
+				<h2>Earning XP</h2>
+				<ul>
+					<li>Every time you roll a desperate action, mark XP in that action's attribute.</li>
+					<li>At the end of each session, for each item below, mark 1 XP (in your playbook or an attribute) or 2 XP if that item occurred multiple times.</li>
+					<li>You address a challenge with <input type="text" v-model="characters[currentCharacter].xpChallengeType" /></li>
+					<li>You expressed your beliefs, drives, heritage, or background.</li>
+					<li>You struggled with issues from your vice or traumas during the session.</li>
+				</ul>
+			</section>
+			
+			<section>
+				<h2>Friends and Enemies</h2>
+				
+			</section>
+			
+			<section>
+				<h1>Playbook</h1>
+				<h2>Special Abilities</h2>
+			</section>
+			
+			<section>
+				<h2>Insight</h2>
+			</section>
+			
+			<section>
+				<h2>Prowess</h2>
+			</section>
+			
+			<section>
+				<h2>Resolve</h2>
 			</section>
 		</div>
 	</div>
