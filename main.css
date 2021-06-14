@@ -33,12 +33,14 @@ html, body
 	border-radius: 0.25em;
 	background-color: #eee;
 	text-align: center;
+	cursor: pointer;
 }
 
 #character-select li.current
 {
 	background-color: #333;
 	color: #eee;
+	font-weight: bold;
 }
 
 
@@ -74,6 +76,14 @@ h1
 	display: flex;
 	flex-direction: row;
 	/*justify-content: space-between;*/
+	width: 100%;
+}
+
+.spaced-row
+{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
 	width: 100%;
 }
 

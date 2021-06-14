@@ -12,7 +12,7 @@
 <body>
 	<div id="app">
 		<ul id="character-select">
-			<li v-for="(character, index) in characters" v-bind:onclick="currentCharacter = index" v-bind:class="index == currentCharacter ? 'current' : ''">{{character.fullName}}</li>
+			<li v-for="(character, index) in characters" v-on:click="currentCharacter = index" v-bind:key="index" v-bind:class="index === currentCharacter ? 'current' : ''">{{character.fullName}}</li>
 		</ul>
 		<div id="character-sheet">
 			<section>
@@ -90,6 +90,18 @@
 						
 						<section>
 							<h3>Armor Uses</h3>
+							<div class="spaced-row">
+								<label for="armor-checkbox">Armor</label>
+								<input id="armor-checkbox" type="checkbox" v-model="characters[currentCharacter].usesArmor" />
+							</div>
+							<div class="spaced-row">
+								<label for="heavy-armor-checkbox">Heavy Armor</label>
+								<input id="heavy-armor-checkbox" type="checkbox" v-model="characters[currentCharacter].usesHeavyArmor" />
+							</div>
+							<div class="spaced-row">
+								<label for="special-armor-checkbox">Special Armor</label>
+								<input id="special-armor-checkbox" type="checkbox" v-model="characters[currentCharacter].usesSpecialArmor" />
+							</div>
 						</section>
 					</div>
 				</div>
