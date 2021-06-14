@@ -1,5 +1,13 @@
 window.addEventListener('DOMContentLoaded', function()
 {
+	//Custom component for the XP ticks.
+	Vue.component('xp-ticks',
+	{
+		model: { prop: 'active', event: 'change' },
+		props: ['max', 'active'],
+		template: '<div class="xp-ticks"><div v-for="i in parseInt(max)" v-bind:class="i <= active ? \'xp-tick-active\' : \'xp-tick-inactive\'" v-on:click="$emit(\'change\', i)"></div></div>'
+	});
+	
 	var app = new Vue({
 		el: '#app',
 		data: {

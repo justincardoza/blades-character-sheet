@@ -125,3 +125,29 @@ h1
 {
 	width: 32em;
 }
+
+
+
+.xp-ticks
+{
+	display: flex;
+	flex-direction: row;
+}
+
+.xp-tick-active, .xp-tick-inactive
+{
+	width: 0.6em;
+	height: 1em;
+	border: 1px solid black;
+	margin-right: 0.2em;
+}
+
+.xp-tick-active
+{
+	background-color: #a00;
+}
+
+.xp-tick-inactive
+{
+	background-color: white;
+}
