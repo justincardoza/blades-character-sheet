@@ -5,7 +5,7 @@ window.addEventListener('DOMContentLoaded', function()
 	{
 		model: { prop: 'active', event: 'change' },
 		props: ['max', 'active'],
-		template: '<div class="xp-ticks"><div v-for="i in parseInt(max)" v-bind:class="i <= active ? \'xp-tick-active\' : \'xp-tick-inactive\'" v-on:click="$emit(\'change\', i)"></div></div>'
+		template: '<div class="xp-ticks"><div v-for="i in parseInt(max)" v-bind:class="i <= active ? \'xp-tick-active\' : \'xp-tick-inactive\'" v-on:click="$emit(\'change\', i == active ? 0 : i)"></div></div>'
 	});
 	
 	var app = new Vue({

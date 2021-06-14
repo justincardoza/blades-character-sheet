@@ -139,7 +139,11 @@ h1
 	width: 0.6em;
 	height: 1em;
 	border: 1px solid black;
-	margin-right: 0.2em;
+	margin-right: 0.1em;
+	margin-top: -0.2em;
+	border-top: 0.5em solid black;
+	transform: skew(0, -20deg);
+	cursor: pointer;
 }
 
 .xp-tick-active
