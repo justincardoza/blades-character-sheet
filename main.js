@@ -8,6 +8,73 @@ window.addEventListener('DOMContentLoaded', function()
 		template: '<div class="xp-ticks"><div v-for="i in parseInt(max)" v-bind:class="i <= active ? \'xp-tick-active\' : \'xp-tick-inactive\'" v-on:click="$emit(\'change\', i == active ? 0 : i)"></div></div>'
 	});
 	
+	//Custom component for the clocks for healing, projects, etc.
+	//This was tricky. At first I tried to build it with absolute-positioned <div>s rotated to form the segments. That should be possible, 
+	//and there are tutorials out there on the math required, but it'll be jury-rigged at best. This component uses a hybrid approach with a 
+	//border radius of 50% to generate a circle, an SVG for the lines to separate the segments, and then a conic gradient on the <svg> element 
+	//itself for the background. Note that when I wrote this (June 2021), SVG did not support conic gradients on shape elements, which is why 
+	//I'm not using a <circle> directly for the border. It works okay with a <circle> and then the gradient on the <svg> container, but the 
+	//background does spill out a little since the circle has to be a tiny bit smaller than the container to avoid the edges getting cut off.
+	Vue.component('clock', 
+	{
+		model: { prop: 'active', event: 'change' },
+		props: 
+		{ 
+			max: Number, 
+			active: { type: Number, default: 0 },
+			size: { type: Number, default: 20 },
+		},
+		methods: 
+		{
+			handleClick(event)
+			{
+				var rect = event.target.getBoundingClientRect();
+				var offsetX = event.clientX - rect.x - (rect.width / 2);
+				var offsetY = event.clientY - rect.y - (rect.height / 2);
+				var angle = Math.atan2(offsetY, offsetX) + (Math.PI / 2);
+				
+				if(angle < 0) angle += Math.PI * 2;
+				
+				var value = Math.floor(angle / (Math.PI * 2) * this.max) + 1;
+				
+				this.$emit('change', value == this.active ? 0 : value);
+			}
+		},
+		render: function(createElement)
+		{
+			var center = this.size / 2;
+			var r = (this.size / 2);
+			var outlines = [];
+			var colorStops = [];
+			
+			for(var i = 1; i <= this.max; i++)
+			{
+				colorStops.push((i <= this.active ? '#a00' : '#fff') + ' ' + ((i - 1) / this.max) + 'turn ' + (i / this.max) + 'turn');
+				
+				outlines.push(createElement('line', 
+				{ 
+					attrs: 
+					{ 
+						x1: center, 
+						y1: center, 
+						x2: center + r * Math.sin((i - 1) / this.max * Math.PI * 2), //These are reversed to make sure one line is always pointing straight up.
+						y2: center - r * Math.cos((i - 1) / this.max * Math.PI * 2), 
+						stroke: 'black',
+					} 
+				}));
+			}
+			
+			return createElement('svg', 
+			{ 
+				style: 'background: conic-gradient(' + colorStops.join(',') + ')' , 
+				class: 'clock', 
+				attrs: { width: this.size, height: this.size, viewBox: '0 0 ' + this.size + ' ' + this.size },
+				on: { click: this.handleClick },
+			}, 
+			outlines);
+		}
+	});
+	
 	var app = new Vue({
 		el: '#app',
 		data: {
