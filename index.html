@@ -34,6 +34,10 @@
 						<label for="character-alias">Alias</label>
 						<input type="text" id="character-alias" v-model="characters[currentCharacter].alias" />
 					</div>
+					<div class="basic-field">
+						<label for="character-crew">Crew</label>
+						<input type="text" id="character-crew" v-model="characters[currentCharacter].crew" />
+					</div>
 				</div>
 				
 				<div class="basic-field wide-basic-field">
@@ -89,7 +93,11 @@
 			<section>
 				<div class="row">
 					<div>
-						<h2>Harm</h2>
+						<div class="spaced-row">
+							<h2>Harm</h2>
+							<button v-bind:disabled="characters[currentCharacter].healingClock != 4">Heal</button>
+						</div>
+						
 					</div>
 					<div>
 						<section>

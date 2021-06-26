@@ -105,6 +105,7 @@ window.addEventListener('DOMContentLoaded', function()
 				var character = 
 				{
 					fullName: 'New Character',
+					crew: '',
 					alias: '',
 					look: '',
 					heritageType: '',
