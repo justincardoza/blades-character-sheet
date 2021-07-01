@@ -126,6 +126,9 @@ window.addEventListener('DOMContentLoaded', function()
 					enemies: [],
 					specialAbilities: [],
 					specialAbilityXP: 0,
+					insightXP: 0,
+					prowessXP: 0,
+					resolveXP: 0,
 					coin: 0,
 					stash: [0, 0, 0, 0],
 				};

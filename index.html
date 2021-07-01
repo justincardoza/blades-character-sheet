@@ -151,15 +151,25 @@
 			</section>
 			
 			<section>
-				<h2>Insight</h2>
+				<div class="spaced-row">
+					<h2>Insight</h2>
+					<xp-ticks max="6" v-model="characters[currentCharacter].insightXP" />
+				</div>
+				
 			</section>
 			
 			<section>
-				<h2>Prowess</h2>
+				<div class="spaced-row">
+					<h2>Prowess</h2>
+					<xp-ticks max="6" v-model="characters[currentCharacter].prowessXP" />
+				</div>
 			</section>
 			
 			<section>
-				<h2>Resolve</h2>
+				<div class="spaced-row">
+					<h2>Resolve</h2>
+					<xp-ticks max="6" v-model="characters[currentCharacter].resolveXP" />
+				</div>
 			</section>
 		</div>
 	</div>
