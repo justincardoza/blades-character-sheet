@@ -168,3 +168,29 @@ h1
 	width: 3em;
 	height: 3em;
 }
+
+
+.action-rating
+{
+	display: flex;
+	flex-direction: row;
+}
+
+.action-rating-bubble
+{
+	width: 0.5em;
+	height: 0.5em;
+	border: 1px solid gray;
+	border-radius: 50%;
+	margin: 0.2em;
+}
+
+.action-rating-bubble-active
+{
+	background-color: #a00;
+}
+
+.action-rating-bubble-first
+{
+	border-right: 1px solid black;
+}

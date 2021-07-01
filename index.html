@@ -91,21 +91,21 @@
 			</section>
 			
 			<section>
-				<div class="row">
+				<div class="spaced-row">
 					<div>
 						<div class="spaced-row">
 							<h2>Harm</h2>
-							<button v-bind:disabled="characters[currentCharacter].healingClock != 4">Heal</button>
+							
 						</div>
-						
+						<button v-bind:disabled="characters[currentCharacter].healingClock != 4">Heal</button>
 					</div>
 					<div>
-						<section>
+						<section style="width: 8em;">
 							<h3>Healing</h3>
 							<clock v-bind:max="4" v-model="characters[currentCharacter].healingClock" v-bind:size="30" />
 						</section>
 						
-						<section>
+						<section style="width: 8em;">
 							<h3>Armor Uses</h3>
 							<div class="spaced-row">
 								<label for="armor-checkbox">Armor</label>
@@ -145,7 +145,7 @@
 				<section>
 					<div class="spaced-row">
 						<h2>Special Abilities</h2>
-						<xp-ticks max="8" v-model="characters[currentCharacter].specialAbilityXP" />
+						<xp-ticks max="8" v-model="characters[currentCharacter].specialAbilityXP"></xp-ticks>
 					</div>
 				</section>
 			</section>
@@ -153,23 +153,39 @@
 			<section>
 				<div class="spaced-row">
 					<h2>Insight</h2>
-					<xp-ticks max="6" v-model="characters[currentCharacter].insightXP" />
+					<xp-ticks max="6" v-model="characters[currentCharacter].insightXP"></xp-ticks>
 				</div>
-				
+				<action-rating name="Hunt" v-model="characters[currentCharacter].actionRatings.hunt"></action-rating>
+				<action-rating name="Study" v-model="characters[currentCharacter].actionRatings.study"></action-rating>
+				<action-rating name="Survey" v-model="characters[currentCharacter].actionRatings.survey"></action-rating>
+				<action-rating name="Tinker" v-model="characters[currentCharacter].actionRatings.tinker"></action-rating>
 			</section>
 			
 			<section>
 				<div class="spaced-row">
 					<h2>Prowess</h2>
-					<xp-ticks max="6" v-model="characters[currentCharacter].prowessXP" />
+					<xp-ticks max="6" v-model="characters[currentCharacter].prowessXP"></xp-ticks>
 				</div>
+				<action-rating name="Finesse" v-model="characters[currentCharacter].actionRatings.finesse"></action-rating>
+				<action-rating name="Prowl" v-model="characters[currentCharacter].actionRatings.prowl"></action-rating>
+				<action-rating name="Skirmish" v-model="characters[currentCharacter].actionRatings.skirmish"></action-rating>
+				<action-rating name="Wreck" v-model="characters[currentCharacter].actionRatings.wreck"></action-rating>
 			</section>
 			
 			<section>
 				<div class="spaced-row">
 					<h2>Resolve</h2>
-					<xp-ticks max="6" v-model="characters[currentCharacter].resolveXP" />
+					<xp-ticks max="6" v-model="characters[currentCharacter].resolveXP"></xp-ticks>
 				</div>
+				<action-rating name="Attune" v-model="characters[currentCharacter].actionRatings.attune"></action-rating>
+				<action-rating name="Command" v-model="characters[currentCharacter].actionRatings.command"></action-rating>
+				<action-rating name="Consort" v-model="characters[currentCharacter].actionRatings.consort"></action-rating>
+				<action-rating name="Sway" v-model="characters[currentCharacter].actionRatings.sway"></action-rating>
+			</section>
+			
+			<section>
+				<h2>Danger Zone</h2>
+				<button v-on:click="deleteCharacter">Delete Character</button>
 			</section>
 		</div>
 	</div>

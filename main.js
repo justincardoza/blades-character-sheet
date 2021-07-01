@@ -5,7 +5,21 @@ window.addEventListener('DOMContentLoaded', function()
 	{
 		model: { prop: 'active', event: 'change' },
 		props: ['max', 'active'],
-		template: '<div class="xp-ticks"><div v-for="i in parseInt(max)" v-bind:class="i <= active ? \'xp-tick-active\' : \'xp-tick-inactive\'" v-on:click="$emit(\'change\', i == active ? 0 : i)"></div></div>'
+		template: '<div class="xp-ticks"><div v-for="i in parseInt(max)" v-bind:key="i" v-bind:class="i <= active ? \'xp-tick-active\' : \'xp-tick-inactive\'" v-on:click="$emit(\'change\', i == active ? 0 : i)"></div></div>'
+	});
+	
+	//Custom component for action ratings.
+	Vue.component('action-rating', 
+	{
+		model: { prop: 'active', event: 'change' },
+		props: ['name', 'active'],
+		template: '<div class="action-rating">' + 
+			'<div v-for="i in 4" v-bind:key="i" v-bind:class="[\'action-rating-bubble-wrapper\', i == 1 ? \'action-rating-bubble-first\' : null]">' +
+				'<div v-bind:class="[\'action-rating-bubble\', i <= active ? \'action-rating-bubble-active\' : null]" v-on:click="$emit(\'change\', i == active ? 0 : i)">' + 
+				'</div>' + 
+			'</div>' +
+			'<div class="action-rating-name">{{name}}</div>' + 
+		'</div>',
 	});
 	
 	//Custom component for the clocks for healing, projects, etc.
@@ -129,12 +143,27 @@ window.addEventListener('DOMContentLoaded', function()
 					insightXP: 0,
 					prowessXP: 0,
 					resolveXP: 0,
+					actionRatings: { hunt: 0, study: 0, survey: 0, tinker: 0, finesse: 0, prowl: 0, skirmish: 0, wreck: 0, attune: 0, command: 0, consort: 0, sway: 0 },
 					coin: 0,
 					stash: [0, 0, 0, 0],
 				};
 				
 				this.characters.push(character);
 				this.currentCharacter = this.characters.length - 1;
+			},
+			
+			deleteCharacter: function()
+			{
+				if(this.currentCharacter >= 0 && this.currentCharacter < this.characters.length)
+				{
+					if(window.confirm('Really delete character "' + this.characters[this.currentCharacter].fullName + '" (' + this.characters[this.currentCharacter].alias + ')?'))
+					{
+						this.characters.splice(this.currentCharacter, 1);
+						
+						if(this.currentCharacter >= this.characters.length) this.currentCharacter = this.characters.length - 1;
+						if(this.currentCharacter < 0) this.addCharacter();
+					}
+				}
 			}
 		}
 	});
