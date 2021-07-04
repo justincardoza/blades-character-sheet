@@ -1,6 +1,7 @@
+* { box-sizing: border-box; }
+
 html, body
 {
-	box-sizing: border-box;
 	width: 100%;
 	height: 100%;
 	margin: 0;
@@ -141,7 +142,7 @@ h1
 .xp-tick-active, .xp-tick-inactive
 {
 	width: 0.6em;
-	height: 1em;
+	height: 1.5em;
 	border: 1px solid black;
 	margin-right: 0.1em;
 	margin-top: -0.2em;
@@ -174,6 +175,7 @@ h1
 {
 	display: flex;
 	flex-direction: row;
+	align-items: center;
 }
 
 .action-rating-bubble
@@ -193,4 +195,48 @@ h1
 .action-rating-bubble-first
 {
 	border-right: 1px solid black;
+}
+
+.action-rating-name
+{
+	margin-left: 0.25em;
+}
+
+
+.trauma-select
+{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+}
+
+.trauma-select li
+{
+	padding: 0.1em;
+	margin: 0.1em 0.2em;
+	cursor: pointer;
+	border: 1px solid transparent;
+}
+
+.trauma-select li.trauma-active
+{
+	border: 1px solid #a00;
+}
+
+
+table
+{
+	border-collapse: collapse;
+	margin: 0.25em 0;
+}
+
+td, th
+{
+	border: 1px solid gray;
+	padding: 0.2em;
 }

@@ -22,6 +22,27 @@ window.addEventListener('DOMContentLoaded', function()
 		'</div>',
 	});
 	
+	//Custom component for traumas.
+	Vue.component('trauma-select', 
+	{
+		model: { prop: 'active', event: 'change' },
+		props: [ 'active', 'options' ],
+		template: '<ul class="trauma-select">' + 
+			'<li v-for="option in options" v-bind:class="(option in active && active[option]) ? \'trauma-active\' : null" v-on:click="toggleTrauma(option)">{{option}}</li>' +
+		'</ul>',
+		methods:
+		{
+			toggleTrauma: function(trauma)
+			{
+				var current = !!this.active[trauma];
+				var newState = Object.assign({}, this.active);
+				
+				newState[trauma] = !current;
+				this.$emit('change', newState);
+			}
+		},
+	});
+	
 	//Custom component for the clocks for healing, projects, etc.
 	//This was tricky. At first I tried to build it with absolute-positioned <div>s rotated to form the segments. That should be possible, 
 	//and there are tutorials out there on the math required, but it'll be jury-rigged at best. This component uses a hybrid approach with a 
@@ -129,7 +150,7 @@ window.addEventListener('DOMContentLoaded', function()
 					viceType: '',
 					viceDescription: '',
 					stress: 0,
-					traumas: [],
+					traumas: {},
 					harms: [],
 					healingClock: 0,
 					usesArmor: false,

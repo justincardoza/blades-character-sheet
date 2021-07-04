@@ -78,14 +78,15 @@
 			</section>
 			
 			<section>
-				<div class="row">
+				<div class="spaced-row">
 					<div class="row">
-						<h2>Stress</h2>
-						
+						<h2 style="margin-right: 0.5em;">Stress</h2>
+						<xp-ticks max="9" v-model="characters[currentCharacter].stress"></xp-ticks>
 					</div>
 					
-					<div class="row">
+					<div class="spaced-row">
 						<h2>Trauma</h2>
+						<trauma-select v-bind:options="['Cold', 'Haunted', 'Obsessed', 'Paranoid', 'Reckless', 'Soft', 'Unstable', 'Vicious']" v-model="characters[currentCharacter].traumas"></trauma-select>
 					</div>
 				</div>
 			</section>
@@ -93,16 +94,25 @@
 			<section>
 				<div class="spaced-row">
 					<div>
-						<div class="spaced-row">
-							<h2>Harm</h2>
-							
-						</div>
+						<h2>Harm</h2>
+						<table>
+							<thead>
+								<tr>
+									<th>Level</th>
+									<th>Description</th>
+									<th>Effect</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr></tr>
+							</tbody>
+						</table>
 						<button v-bind:disabled="characters[currentCharacter].healingClock != 4">Heal</button>
 					</div>
 					<div>
 						<section style="width: 8em;">
 							<h3>Healing</h3>
-							<clock v-bind:max="4" v-model="characters[currentCharacter].healingClock" v-bind:size="30" />
+							<clock v-bind:max="4" v-model="characters[currentCharacter].healingClock" v-bind:size="30"></clock>
 						</section>
 						
 						<section style="width: 8em;">
@@ -184,7 +194,7 @@
 			</section>
 			
 			<section>
-				<h2>Danger Zone</h2>
+				<h2>Settings</h2>
 				<button v-on:click="deleteCharacter">Delete Character</button>
 			</section>
 		</div>
