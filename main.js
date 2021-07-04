@@ -185,6 +185,63 @@ window.addEventListener('DOMContentLoaded', function()
 						if(this.currentCharacter < 0) this.addCharacter();
 					}
 				}
+			},
+			
+			addHarm: function()
+			{
+				if(this.currentCharacter >= 0 && this.currentCharacter < this.characters.length)
+				{
+					var harm = { level: '1', description: 'New harm', effect: '', };
+					
+					if(Array.isArray(this.characters[this.currentCharacter].harms))
+					{
+						this.characters[this.currentCharacter].harms.push(harm);
+					}
+					else
+					{
+						this.characters[this.currentCharacter].harms = [harm];
+					}
+				}
+			},
+			
+			sortHarms: function()
+			{
+				if(this.currentCharacter >= 0 && this.currentCharacter < this.characters.length)
+				{
+					this.characters[this.currentCharacter].harms.sort(function(a, b)
+					{
+						if(b.level > a.level) return 1;
+						else if(b.level < a.level) return -1;
+						else return 0;
+					});
+				}
+			},
+			
+			deleteHarm: function(index)
+			{
+				if(this.currentCharacter >= 0 && this.currentCharacter < this.characters.length && index >= 0 && index < this.characters[this.currentCharacter].harms.length)
+				{
+					if(window.confirm('Are you sure you want to remove level ' + this.characters[this.currentCharacter].harms[index].level + ' harm "' + this.characters[this.currentCharacter].harms[index].description + '"?'))
+					{
+						this.characters[this.currentCharacter].harms.splice(index, 1);
+					}
+				}
+			},
+			
+			healHarms: function()
+			{
+				if(this.currentCharacter >= 0 && this.currentCharacter < this.characters.length && this.characters[this.currentCharacter].healingClock >= 4)
+				{
+					this.characters[this.currentCharacter].harms = this.characters[this.currentCharacter].harms.map(function(harm)
+					{
+						return { level: harm.level - 1, description: harm.description, effect: harm.effect };
+					}).filter(function(harm)
+					{
+						return harm.level > 0;
+					});
+					
+					this.characters[this.currentCharacter].healingClock -= 4;
+				}
 			}
 		}
 	});

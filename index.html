@@ -101,13 +101,33 @@
 									<th>Level</th>
 									<th>Description</th>
 									<th>Effect</th>
+									<th></th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr></tr>
+								<tr v-for="(harm, index) in characters[currentCharacter].harms">
+									<td>
+										<select v-model="characters[currentCharacter].harms[index].level">
+											<option value="3">3</option>
+											<option value="2">2</option>
+											<option value="1">1</option>
+										</select>
+									</td>
+									<td>
+										<input type="text" v-model="characters[currentCharacter].harms[index].description" />
+									</td>
+									<td>
+										<input type="text" v-model="characters[currentCharacter].harms[index].effect" />
+									</td>
+									<td><button v-on:click="deleteHarm(index)">&times;</button></td>
+								</tr>
 							</tbody>
 						</table>
-						<button v-bind:disabled="characters[currentCharacter].healingClock != 4">Heal</button>
+						<div class="row">
+							<button v-on:click="healHarms" v-bind:disabled="characters[currentCharacter].healingClock != 4">Heal</button>
+							<button v-on:click="sortHarms">Sort Harms</button>
+							<button v-on:click="addHarm">Add Harm</button>
+						</div>
 					</div>
 					<div>
 						<section style="width: 8em;">
