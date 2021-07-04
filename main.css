@@ -67,7 +67,6 @@ section
 {
 	border-top: 0.4em solid black;
 	margin: 0 0 0.5em 0;
-	/*width: 48%;*/
 	break-inside: avoid;
 }
 
@@ -101,7 +100,6 @@ h1
 {
 	display: flex;
 	flex-direction: row;
-	/*justify-content: space-between;*/
 	width: 100%;
 }
 
@@ -118,7 +116,7 @@ h1
 	display: flex;
 	flex-direction: column-reverse;
 	margin: 0.2em;
-	width: 100%;
+	flex-grow: 1;
 }
 
 .basic-field input

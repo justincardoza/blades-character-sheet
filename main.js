@@ -191,7 +191,7 @@ window.addEventListener('DOMContentLoaded', function()
 			{
 				if(this.currentCharacter >= 0 && this.currentCharacter < this.characters.length)
 				{
-					var harm = { level: '1', description: 'New harm', effect: '', };
+					var harm = { level: '1', description: '', effect: '', };
 					
 					if(Array.isArray(this.characters[this.currentCharacter].harms))
 					{
@@ -204,6 +204,7 @@ window.addEventListener('DOMContentLoaded', function()
 				}
 			},
 			
+			//Sorts a character's harms by level in descending order.
 			sortHarms: function()
 			{
 				if(this.currentCharacter >= 0 && this.currentCharacter < this.characters.length)
@@ -228,6 +229,7 @@ window.addEventListener('DOMContentLoaded', function()
 				}
 			},
 			
+			//Drops the level of all harms by 1, removing any that have gone below 1, then resets the healing clock.
 			healHarms: function()
 			{
 				if(this.currentCharacter >= 0 && this.currentCharacter < this.characters.length && this.characters[this.currentCharacter].healingClock >= 4)
