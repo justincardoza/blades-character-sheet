@@ -51,16 +51,23 @@ html, body
 {
 	padding: 0 0.5em;
 	width: 100%;
-	display: flex;
-	flex-direction: column;
-	flex-wrap: wrap;
 }
+
+/* Split the character sheet into columns if the screen is wide enough. */
+@media (min-width: 10in)
+{
+	#character-sheet
+	{
+		columns: 2;
+	}
+}
+
 
 section
 {
 	border-top: 0.4em solid black;
 	margin: 0 0 0.5em 0;
-	width: 48%;
+	/*width: 48%;*/
 	break-inside: avoid;
 }
 
@@ -126,10 +133,6 @@ h1
 	font-size: x-small;
 }
 
-.wide-basic-field
-{
-	/*width: 32em;*/
-}
 
 
 
@@ -213,6 +216,7 @@ h1
 	list-style-type: none;
 	padding: 0;
 	margin: 0;
+	font-size: 90%;
 }
 
 .trauma-select li
@@ -239,4 +243,23 @@ td, th
 {
 	border: 1px solid gray;
 	padding: 0.2em;
+}
+
+
+.special-ability
+{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.special-ability textarea
+{
+	flex-grow: 1;
+}
+
+.special-ability button
+{
+	margin-left: 0.25em;
 }

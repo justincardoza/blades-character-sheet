@@ -177,6 +177,11 @@
 						<h2>Special Abilities</h2>
 						<xp-ticks max="8" v-model="characters[currentCharacter].specialAbilityXP"></xp-ticks>
 					</div>
+					<div class="special-ability" v-for="(ability, index) in characters[currentCharacter].specialAbilities">
+						<textarea v-model="characters[currentCharacter].specialAbilities[index]"></textarea>
+						<button v-on:click="deleteSpecialAbility(index)">&times;</button>
+					</div>
+					<button v-on:click="characters[currentCharacter].specialAbilities.push('')">Add Special Ability</button>
 				</section>
 			</section>
 			
@@ -185,10 +190,10 @@
 					<h2>Insight</h2>
 					<xp-ticks max="6" v-model="characters[currentCharacter].insightXP"></xp-ticks>
 				</div>
-				<action-rating name="Hunt" v-model="characters[currentCharacter].actionRatings.hunt"></action-rating>
-				<action-rating name="Study" v-model="characters[currentCharacter].actionRatings.study"></action-rating>
-				<action-rating name="Survey" v-model="characters[currentCharacter].actionRatings.survey"></action-rating>
-				<action-rating name="Tinker" v-model="characters[currentCharacter].actionRatings.tinker"></action-rating>
+				<action-rating name="Hunt"     v-model="characters[currentCharacter].actionRatings.hunt"></action-rating>
+				<action-rating name="Study"    v-model="characters[currentCharacter].actionRatings.study"></action-rating>
+				<action-rating name="Survey"   v-model="characters[currentCharacter].actionRatings.survey"></action-rating>
+				<action-rating name="Tinker"   v-model="characters[currentCharacter].actionRatings.tinker"></action-rating>
 			</section>
 			
 			<section>
@@ -196,10 +201,10 @@
 					<h2>Prowess</h2>
 					<xp-ticks max="6" v-model="characters[currentCharacter].prowessXP"></xp-ticks>
 				</div>
-				<action-rating name="Finesse" v-model="characters[currentCharacter].actionRatings.finesse"></action-rating>
-				<action-rating name="Prowl" v-model="characters[currentCharacter].actionRatings.prowl"></action-rating>
+				<action-rating name="Finesse"  v-model="characters[currentCharacter].actionRatings.finesse"></action-rating>
+				<action-rating name="Prowl"    v-model="characters[currentCharacter].actionRatings.prowl"></action-rating>
 				<action-rating name="Skirmish" v-model="characters[currentCharacter].actionRatings.skirmish"></action-rating>
-				<action-rating name="Wreck" v-model="characters[currentCharacter].actionRatings.wreck"></action-rating>
+				<action-rating name="Wreck"    v-model="characters[currentCharacter].actionRatings.wreck"></action-rating>
 			</section>
 			
 			<section>
@@ -207,10 +212,10 @@
 					<h2>Resolve</h2>
 					<xp-ticks max="6" v-model="characters[currentCharacter].resolveXP"></xp-ticks>
 				</div>
-				<action-rating name="Attune" v-model="characters[currentCharacter].actionRatings.attune"></action-rating>
-				<action-rating name="Command" v-model="characters[currentCharacter].actionRatings.command"></action-rating>
-				<action-rating name="Consort" v-model="characters[currentCharacter].actionRatings.consort"></action-rating>
-				<action-rating name="Sway" v-model="characters[currentCharacter].actionRatings.sway"></action-rating>
+				<action-rating name="Attune"   v-model="characters[currentCharacter].actionRatings.attune"></action-rating>
+				<action-rating name="Command"  v-model="characters[currentCharacter].actionRatings.command"></action-rating>
+				<action-rating name="Consort"  v-model="characters[currentCharacter].actionRatings.consort"></action-rating>
+				<action-rating name="Sway"     v-model="characters[currentCharacter].actionRatings.sway"></action-rating>
 			</section>
 			
 			<section>

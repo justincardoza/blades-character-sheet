@@ -242,6 +242,17 @@ window.addEventListener('DOMContentLoaded', function()
 					
 					this.characters[this.currentCharacter].healingClock -= 4;
 				}
+			},
+			
+			deleteSpecialAbility: function(index)
+			{
+				if(this.currentCharacter >= 0 && this.currentCharacter < this.characters.length && index >= 0 && index < this.characters[this.currentCharacter].specialAbilities.length)
+				{
+					if(window.confirm('Are you sure you want to remove this special ability?'))
+					{
+						this.characters[this.currentCharacter].specialAbilities.splice(index, 1);
+					}
+				}
 			}
 		}
 	});
