@@ -244,6 +244,15 @@ window.addEventListener('DOMContentLoaded', function()
 				}
 			},
 			
+			addSpecialAbility: function()
+			{
+				if(this.currentCharacter >= 0 && this.currentCharacter < this.characters.length)
+				{
+					this.characters[this.currentCharacter].specialAbilities.push('');
+					this.characters[this.currentCharacter].specialAbilityXP -= 8;
+				}
+			},
+			
 			deleteSpecialAbility: function(index)
 			{
 				if(this.currentCharacter >= 0 && this.currentCharacter < this.characters.length && index >= 0 && index < this.characters[this.currentCharacter].specialAbilities.length)

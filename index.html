@@ -124,7 +124,7 @@
 							</tbody>
 						</table>
 						<div class="row">
-							<button v-on:click="healHarms" v-bind:disabled="characters[currentCharacter].healingClock != 4">Heal</button>
+							<button v-on:click="healHarms" v-bind:disabled="characters[currentCharacter].healingClock < 4">Heal</button>
 							<button v-on:click="sortHarms">Sort Harms</button>
 							<button v-on:click="addHarm">Add Harm</button>
 						</div>
@@ -166,8 +166,29 @@
 			</section>
 			
 			<section>
-				<h2>Friends and Enemies</h2>
-				
+				<div class="spaced-row">
+					<h2>Friends</h2>
+					<button v-on:click="characters[currentCharacter].friends.push('')">Add Friend</button>
+				</div>
+				<ul class="frenemies">
+					<li v-for="(friend, index) in characters[currentCharacter].friends">
+						<input type="text" v-model="characters[currentCharacter].friends[index]" />
+						<button v-on:click="characters[currentCharacter].friends.splice(index, 1)">&times;</button>
+					</li>
+				</ul>
+			</section>
+			
+			<section>
+				<div class="spaced-row">
+					<h2>Enemies</h2>
+					<button v-on:click="characters[currentCharacter].enemies.push('')">Add Enemy</button>
+				</div>
+				<ul class="frenemies">
+					<li v-for="(friend, index) in characters[currentCharacter].enemies">
+						<input type="text" v-model="characters[currentCharacter].enemies[index]" />
+						<button v-on:click="characters[currentCharacter].enemies.splice(index, 1)">&times;</button>
+					</li>
+				</ul>
 			</section>
 			
 			<section>
@@ -175,13 +196,13 @@
 				<section>
 					<div class="spaced-row">
 						<h2>Special Abilities</h2>
+						<button v-if="characters[currentCharacter].specialAbilityXP >= 8" v-on:click="addSpecialAbility">Add Special Ability</button>
 						<xp-ticks max="8" v-model="characters[currentCharacter].specialAbilityXP"></xp-ticks>
 					</div>
 					<div class="special-ability" v-for="(ability, index) in characters[currentCharacter].specialAbilities">
 						<textarea v-model="characters[currentCharacter].specialAbilities[index]"></textarea>
 						<button v-on:click="deleteSpecialAbility(index)">&times;</button>
 					</div>
-					<button v-on:click="characters[currentCharacter].specialAbilities.push('')">Add Special Ability</button>
 				</section>
 			</section>
 			
