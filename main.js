@@ -213,6 +213,7 @@ window.addEventListener('DOMContentLoaded', function()
 					stash: [0, 0, 0, 0],
 					maxLoad: 3,
 					items: [],
+					projects: [],
 				};
 				
 				this.characters.push(character);
@@ -337,6 +338,22 @@ window.addEventListener('DOMContentLoaded', function()
 				if(this.currentCharacter >= 0 && this.currentCharacter < this.characters.length && index >= 0 && index < this.characters[this.currentCharacter].items.length)
 				{
 					this.characters[this.currentCharacter].items.splice(index, 1);
+				}
+			},
+			
+			//Adds a project for the current character.
+			addProject: function()
+			{
+				if(this.currentCharacter >= 0 && this.currentCharacter < this.characters.length)
+				{
+					var project = { projectName: '', description: '', progress: 0, clockSegments: 4 };
+
+					if(Array.isArray(this.characters[this.currentCharacter].projects))
+						this.characters[this.currentCharacter].projects.push(project);
+					else
+						this.characters[this.currentCharacter].projects = [project];
+					
+					console.log(this.characters[this.currentCharacter].projects);
 				}
 			},
 		}

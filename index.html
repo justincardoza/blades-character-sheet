@@ -210,7 +210,7 @@
 				</div>
 				<div>
 					<h3>Stash</h3>
-					<coin-indicator max="10" v-for="(line, index) in characters[currentCharacter].stash"
+					<coin-indicator max="10" v-for="(line, index) in characters[currentCharacter].stash" v-bind:key="index"
 						v-model="characters[currentCharacter].stash[index]"></coin-indicator>
 				</div>
 			</section>
@@ -273,6 +273,33 @@
 						<button v-on:click="deleteItem(index)">&times;</button>
 					</li>
 				</ul>
+			</section>
+			
+			<section>
+				<div class="spaced-row">
+					<h2>Projects</h2>
+					<button v-on:click="addProject">Add Project</button>
+				</div>
+				<div class="project row" v-for="(project, index) in characters[currentCharacter].projects" v-bind:key="index">
+					<div>
+						<clock v-bind:max="project.clockSegments" v-model="characters[currentCharacter].projects[index].progress">
+						</clock>
+						<div>Progress</div>
+						<div>
+							{{project.progress}} out of
+							<select v-model="characters[currentCharacter].projects[index].clockSegments">
+								<option value="4">4</option>
+								<option value="6">6</option>
+								<option value="8">8</option>
+							</select>
+						</div>
+					</div>
+					<div>
+						<div><input type="text" v-model="characters[currentCharacter].projects[index].projectName"
+								placeholder="Project name" /></div>
+						<div><textarea v-model="characters[currentCharacter].projects[index].description" placeholder="Description"></textarea></div>
+					</div>
+				</div>
 			</section>
 			
 			<section>
