@@ -43,6 +43,18 @@ window.addEventListener('DOMContentLoaded', function()
 		},
 	});
 	
+	//Custom component for coin amount indicators. Same logic as XP ticks, just different styling. These could be rolled into one component type at some point.
+	Vue.component('coin-indicator',
+	{
+		model: { prop: 'active', event: 'change' },
+		props: ['max', 'active'],
+		template: 
+		'<div class="coin-indicator">' + 
+			'<div v-for="i in parseInt(max)" v-bind:key="i" v-bind:class="i <= active ? \'coin-active\' : \'coin-inactive\'" v-on:click="$emit(\'change\', i == active ? 0 : i)">' +
+			'</div>' + 
+		'</div>'
+	})
+	
 	//Custom component for the clocks for healing, projects, etc.
 	//This was tricky. At first I tried to build it with absolute-positioned <div>s rotated to form the segments. That should be possible, 
 	//and there are tutorials out there on the math required, but it'll be jury-rigged at best. This component uses a hybrid approach with a 

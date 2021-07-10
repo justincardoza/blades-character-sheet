@@ -203,6 +203,18 @@
 				</div>
 			</section>
 			
+			<section class="spaced-row">
+				<div>
+					<h3>Coin</h3>
+					<coin-indicator max="4" v-model="characters[currentCharacter].coin"></coin-indicator>
+				</div>
+				<div>
+					<h3>Stash</h3>
+					<coin-indicator max="10" v-for="(line, index) in characters[currentCharacter].stash"
+						v-model="characters[currentCharacter].stash[index]"></coin-indicator>
+				</div>
+			</section>
+			
 			<section>
 				<div class="spaced-row">
 					<h2>Insight</h2>

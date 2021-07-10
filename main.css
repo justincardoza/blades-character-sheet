@@ -324,3 +324,30 @@ td, th
 {
 	flex-grow: 1;
 }
+
+
+.coin-indicator
+{
+	display: flex;
+	flex-direction: row;
+	margin-bottom: 0.2em;
+}
+
+.coin-active, .coin-inactive
+{
+	width: 0.8em;
+	height: 0.8em;
+	border: 1px solid black;
+	margin-right: 0.2em;
+	cursor: pointer;
+}
+
+.coin-active
+{
+	background-color: #a00;
+}
+
+.coin-inactive
+{
+	background-color: white;
+}
