@@ -123,6 +123,7 @@ window.addEventListener('DOMContentLoaded', function()
 		
 		computed:
 		{
+			//Calculates the character's current load level based on the items they are currently carrying.
 			currentLoad: function()
 			{
 				if(this.currentCharacter >= 0 && this.currentCharacter < this.characters.length)
@@ -133,6 +134,7 @@ window.addEventListener('DOMContentLoaded', function()
 				return 0;
 			},
 			
+			//Returns a CSS class for the equipment load indicator.
 			loadClass: function()
 			{
 				if(this.currentCharacter >= 0 && this.currentCharacter < this.characters.length)
