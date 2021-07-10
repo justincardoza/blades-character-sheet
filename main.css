@@ -65,8 +65,9 @@ html, body
 
 section
 {
-	border-top: 0.4em solid black;
+	border: 1px solid #eee;
 	margin: 0 0 0.5em 0;
+	padding: 0.5em;
 	break-inside: avoid;
 }
 
@@ -138,16 +139,16 @@ h1
 {
 	display: flex;
 	flex-direction: row;
+	border-top: 0.75em solid black;
 }
 
 .xp-tick-active, .xp-tick-inactive
 {
 	width: 0.6em;
-	height: 1.5em;
+	height: 1.2em;
 	border: 1px solid black;
 	margin-right: 0.1em;
-	margin-top: -0.2em;
-	border-top: 0.5em solid black;
+	margin-top: -0.35em;
 	transform: skew(0, -20deg);
 	cursor: pointer;
 }
