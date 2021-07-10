@@ -59,6 +59,7 @@ window.addEventListener('DOMContentLoaded', function()
 			active: { type: Number, default: 0 },
 			size: { type: Number, default: 20 },
 		},
+		
 		methods: 
 		{
 			handleClick(event)
@@ -75,6 +76,7 @@ window.addEventListener('DOMContentLoaded', function()
 				this.$emit('change', value == this.active ? 0 : value);
 			}
 		},
+		
 		render: function(createElement)
 		{
 			var center = this.size / 2;
@@ -119,6 +121,32 @@ window.addEventListener('DOMContentLoaded', function()
 			characters: [],
 		},
 		
+		computed:
+		{
+			currentLoad: function()
+			{
+				if(this.currentCharacter >= 0 && this.currentCharacter < this.characters.length)
+				{
+					return this.characters[this.currentCharacter].items.reduce(function(total, item) { return item.held ? parseInt(item.loadSlots) + total : total; }, 0);
+				}
+				
+				return 0;
+			},
+			
+			loadClass: function()
+			{
+				if(this.currentCharacter >= 0 && this.currentCharacter < this.characters.length)
+				{
+					if(this.currentLoad > this.characters[this.currentCharacter].maxLoad) return 'overloaded';
+					else if(this.currentLoad == this.characters[this.currentCharacter].maxLoad) return 'fully-loaded';
+				}
+				
+				return null;
+			}
+		},
+		
+		//When the app is created, immediately try to load any existing data. If there is none,
+		//create a new character so there's something to display.
 		created: function()
 		{
 			try
@@ -129,12 +157,14 @@ window.addEventListener('DOMContentLoaded', function()
 			catch(error)
 			{
 				this.errorMessage = error.message;
+				this.characters = [];
 				this.addCharacter();
 			}
 		},
 		
 		methods:
 		{
+			//Adds a new character and opens that character sheet.
 			addCharacter: function()
 			{
 				var character = 
@@ -167,12 +197,15 @@ window.addEventListener('DOMContentLoaded', function()
 					actionRatings: { hunt: 0, study: 0, survey: 0, tinker: 0, finesse: 0, prowl: 0, skirmish: 0, wreck: 0, attune: 0, command: 0, consort: 0, sway: 0 },
 					coin: 0,
 					stash: [0, 0, 0, 0],
+					maxLoad: 3,
+					items: [],
 				};
 				
 				this.characters.push(character);
 				this.currentCharacter = this.characters.length - 1;
 			},
 			
+			//Deletes the current character.
 			deleteCharacter: function()
 			{
 				if(this.currentCharacter >= 0 && this.currentCharacter < this.characters.length)
@@ -187,6 +220,7 @@ window.addEventListener('DOMContentLoaded', function()
 				}
 			},
 			
+			//Adds a new harm to the current character.
 			addHarm: function()
 			{
 				if(this.currentCharacter >= 0 && this.currentCharacter < this.characters.length)
@@ -218,6 +252,7 @@ window.addEventListener('DOMContentLoaded', function()
 				}
 			},
 			
+			//Deletes a specific harm.
 			deleteHarm: function(index)
 			{
 				if(this.currentCharacter >= 0 && this.currentCharacter < this.characters.length && index >= 0 && index < this.characters[this.currentCharacter].harms.length)
@@ -246,6 +281,7 @@ window.addEventListener('DOMContentLoaded', function()
 				}
 			},
 			
+			//Adds a new blank special ability to the current character.
 			addSpecialAbility: function()
 			{
 				if(this.currentCharacter >= 0 && this.currentCharacter < this.characters.length)
@@ -255,6 +291,7 @@ window.addEventListener('DOMContentLoaded', function()
 				}
 			},
 			
+			//Deletes a special ability from the current character.
 			deleteSpecialAbility: function(index)
 			{
 				if(this.currentCharacter >= 0 && this.currentCharacter < this.characters.length && index >= 0 && index < this.characters[this.currentCharacter].specialAbilities.length)
@@ -264,7 +301,30 @@ window.addEventListener('DOMContentLoaded', function()
 						this.characters[this.currentCharacter].specialAbilities.splice(index, 1);
 					}
 				}
-			}
+			},
+			
+			//Adds an item to a character's sheet.
+			addItem: function()
+			{
+				if(this.currentCharacter >= 0 && this.currentCharacter < this.characters.length)
+				{
+					var item = { held: false, itemName: '', loadSlots: 1 };
+					
+					if(Array.isArray(this.characters[this.currentCharacter].items))
+						this.characters[this.currentCharacter].items.push(item);
+					else
+						this.characters[this.currentCharacter].items = [item];
+				}
+			},
+			
+			//Deletes a specific item from the current character sheet.
+			deleteItem: function(index)
+			{
+				if(this.currentCharacter >= 0 && this.currentCharacter < this.characters.length && index >= 0 && index < this.characters[this.currentCharacter].items.length)
+				{
+					this.characters[this.currentCharacter].items.splice(index, 1);
+				}
+			},
 		}
 	});
 	

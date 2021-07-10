@@ -284,3 +284,43 @@ td, th
 	flex-grow: 1;
 	margin-right: 0.25em;
 }
+
+
+.overloaded
+{
+	color: red;
+	font-weight: bold;
+}
+
+.fully-loaded
+{
+	color: #a40;
+	font-weight: bold;
+}
+
+
+.item-list
+{
+	list-style-type: none;
+	margin: 0.4em 0 0 0;
+	padding: 0;
+	width: 100%;
+}
+
+.item-list li
+{
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.item-list li *
+{
+	margin: 0.2em;
+}
+
+.item-name
+{
+	flex-grow: 1;
+}
