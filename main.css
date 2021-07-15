@@ -19,6 +19,19 @@ html, body
 }
 
 
+#top-bar
+{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0.5em 3em;
+	background-color: black;
+	color: white;
+}
+
+
+
 #character-select
 {
 	margin: 0;
@@ -120,7 +133,7 @@ h1
 	flex-grow: 1;
 }
 
-.basic-field input
+.basic-field input, .basic-field > select
 {
 	padding: 0.5em;
 	border-radius: 0.3em;

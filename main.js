@@ -187,6 +187,7 @@ window.addEventListener('DOMContentLoaded', function()
 					crew: '',
 					alias: '',
 					look: '',
+					playbook: '',
 					heritageType: '',
 					heritageDescription: '',
 					backgroundType: '',
