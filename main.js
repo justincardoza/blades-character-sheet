@@ -131,6 +131,7 @@ window.addEventListener('DOMContentLoaded', function()
 			errorMessage: null,
 			currentCharacter: 0,
 			characters: [],
+			showCharacterSelect: false,
 		},
 		
 		computed:
@@ -356,6 +357,20 @@ window.addEventListener('DOMContentLoaded', function()
 					
 					console.log(this.characters[this.currentCharacter].projects);
 				}
+			},
+			
+			//Shows or hides the character select menu.
+			toggleCharacterSelect: function(event)
+			{
+				this.showCharacterSelect = !this.showCharacterSelect;
+				if(event) event.preventDefault();
+			},
+			
+			//Selects a particular character and hides the character select menu.
+			selectCharacter: function(index)
+			{
+				this.currentCharacter = index;
+				this.showCharacterSelect = false;
 			},
 		}
 	});

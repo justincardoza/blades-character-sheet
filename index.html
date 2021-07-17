@@ -11,19 +11,24 @@
 </head>
 <body>
 	<div id="app">
-		<ul id="character-select">
-			<li v-for="(character, index) in characters" v-on:click="currentCharacter = index" v-bind:key="index" v-bind:class="index === currentCharacter ? 'current' : ''">
-				{{character.fullName}}
-			</li>
-			<li v-on:click="addCharacter">+</li>
-		</ul>
+		<div id="top-bar">
+			<a href="#" id="hamburger" v-on:click="toggleCharacterSelect">
+				<div class="hamburger-line"></div>
+				<div class="hamburger-line"></div>
+				<div class="hamburger-line"></div>
+			</a>
+			<h1>Blades in the Dark</h1>
+			<div id="status-indicator" v-if="!errorMessage && saveTimer">Saving...</div>
+			<div id="status-indicator" v-if="!errorMessage && !saveTimer">Saved</div>
+			<div id="error-message" v-if="errorMessage">Error: {{errorMessage}}</div>
+		</div>
 		<main>
-			<div id="top-bar">
-				<h1>Blades in the Dark</h1>
-				<div id="status-indicator" v-if="!errorMessage && saveTimer">Saving...</div>
-				<div id="status-indicator" v-if="!errorMessage && !saveTimer">Saved</div>
-				<div id="error-message" v-if="errorMessage">Error: {{errorMessage}}</div>
-			</div>
+			<ul id="character-select" v-if="showCharacterSelect">
+				<li v-for="(character, index) in characters" v-on:click="selectCharacter(index)" v-bind:key="index" v-bind:class="index === currentCharacter ? 'current' : ''">
+					{{character.fullName}}
+				</li>
+				<li v-on:click="addCharacter">+</li>
+			</ul>
 			<div id="character-sheet">
 				<div class="character-sheet-column-set">
 					<div class="character-sheet-first-column">
