@@ -130,7 +130,6 @@
 											<tr>
 												<th>Level</th>
 												<th>Description</th>
-												<th>Effect</th>
 												<th></th>
 											</tr>
 										</thead>
@@ -146,9 +145,6 @@
 												<td>
 													<input type="text" v-model="characters[currentCharacter].harms[index].description" />
 												</td>
-												<td>
-													<input type="text" v-model="characters[currentCharacter].harms[index].effect" />
-												</td>
 												<td><button v-on:click="deleteHarm(index)">&times;</button></td>
 											</tr>
 										</tbody>
@@ -159,7 +155,7 @@
 									</div>
 								</div>
 								<div>
-									<section style="width: 8em;">
+									<section class="centered">
 										<h3>Healing</h3>
 										<clock v-bind:max="4" v-model="characters[currentCharacter].healingClock" v-bind:size="30"></clock>
 									</section>
