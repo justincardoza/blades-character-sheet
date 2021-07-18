@@ -35,10 +35,6 @@ main
 	z-index: 9001;
 }
 
-#top-bar h1
-{
-	font-size: 200%;
-}
 
 #hamburger
 {
@@ -117,15 +113,6 @@ main
 	{
 		flex-grow: 20;
 		flex-shrink: 20;
-	}
-}
-
-/* Make the character select menu hidden by default for small devices. */
-@media (max-width: 8in)
-{
-	#character-select
-	{
-		display: none;
 	}
 }
 
@@ -318,6 +305,7 @@ td, th
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
+	margin-top: 0.5em;
 }
 
 .special-ability textarea
@@ -417,4 +405,25 @@ td, th
 .coin-inactive
 {
 	background-color: white;
+}
+
+
+/* Styles for small devices. */
+@media (max-width: 8in)
+{
+	#character-select
+	{
+		position: fixed;
+		top: 0;
+		left: 0;
+		height: 100%;
+		background-color: white;
+		z-index: 9000;
+		padding-top: 3.5em;
+	}
+	
+	h1
+	{
+		font-size: x-large;
+	}
 }
