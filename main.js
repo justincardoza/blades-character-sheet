@@ -67,7 +67,7 @@ window.addEventListener('DOMContentLoaded', function()
 		model: { prop: 'active', event: 'change' },
 		props: 
 		{ 
-			max: Number, 
+			max: { default: 4 }, 
 			active: { type: Number, default: 0 },
 			size: { type: Number, default: 20 },
 		},
@@ -172,9 +172,10 @@ window.addEventListener('DOMContentLoaded', function()
 			catch(error)
 			{
 				this.errorMessage = error.message;
-				this.characters = [];
-				this.addCharacter();
 			}
+			
+			if(!this.currentCharacter) this.currentCharacter = 0;
+			if(!this.characters) this.addCharacter();
 		},
 		
 		methods:
@@ -218,6 +219,7 @@ window.addEventListener('DOMContentLoaded', function()
 					projects: [],
 				};
 				
+				if(!Array.isArray(this.characters)) this.characters = [];
 				this.characters.push(character);
 				this.currentCharacter = this.characters.length - 1;
 			},
