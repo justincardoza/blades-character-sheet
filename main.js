@@ -384,6 +384,7 @@ window.addEventListener('DOMContentLoaded', function()
 				this.showMenu = false;
 			},
 			
+			//Imports the character data from a JSON file.
 			importData: function()
 			{
 				var files = document.getElementById('data-import').files;
@@ -404,12 +405,14 @@ window.addEventListener('DOMContentLoaded', function()
 		}
 	});
 	
+	//Saves the character data to local storage.
 	function saveCharacters()
 	{
 		localStorage.setItem('characters', JSON.stringify(app.characters));
 		app.saveTimer = null;
 	}
 	
+	//Sets a timer to save character data.
 	function queueSaveCharacters()
 	{
 		if(app.saveTimer) clearTimeout(app.saveTimer);
