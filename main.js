@@ -392,11 +392,17 @@ window.addEventListener('DOMContentLoaded', function()
 				if(files.length > 0)
 				{
 					var reader = new FileReader();
+					var target = this;
 					
 					reader.onload = function(event)
 					{
-						this.characters = JSON.parse(reader.result);
-						this.currentCharacter = 0;
+						target.characters = JSON.parse(reader.result);
+						target.currentCharacter = 0;
+					}
+					
+					reader.onerror = function(event)
+					{
+						alert('Import failed: ' + reader.error);
 					}
 					
 					reader.readAsText(files[0]);
