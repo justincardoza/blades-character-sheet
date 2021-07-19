@@ -12,7 +12,7 @@
 <body>
 	<div id="app">
 		<div id="top-bar">
-			<a href="#" id="hamburger" v-on:click="toggleCharacterSelect">
+			<a href="#" id="hamburger" v-on:click="toggleMenu">
 				<div class="hamburger-line"></div>
 				<div class="hamburger-line"></div>
 				<div class="hamburger-line"></div>
@@ -23,12 +23,20 @@
 			<div id="error-message" v-if="errorMessage">Error: {{errorMessage}}</div>
 		</div>
 		<main>
-			<ul id="character-select" v-if="showCharacterSelect">
-				<li v-for="(character, index) in characters" v-on:click="selectCharacter(index)" v-bind:key="index" v-bind:class="index === currentCharacter ? 'current' : ''">
-					{{character.fullName}}
-				</li>
-				<li v-on:click="addCharacter">+</li>
-			</ul>
+			<aside id="main-menu" v-if="showMenu">
+				<ul id="character-select">
+					<li v-for="(character, index) in characters" v-on:click="selectCharacter(index)" v-bind:key="index"
+						v-bind:class="index === currentCharacter ? 'current' : ''">
+						{{character.fullName}}
+					</li>
+					<li v-on:click="addCharacter">+</li>
+				</ul>
+				<div id="import-export">
+					<label for="data-import">Import Characters</label>
+					<input type="file" id="data-import" v-on:change="importData" />
+					<a v-bind:href="dataURI" download="characters.json">Export Characters</a>
+				</div>
+			</aside>
 			<div id="character-sheet">
 				<div class="character-sheet-column-set">
 					<div class="character-sheet-first-column">

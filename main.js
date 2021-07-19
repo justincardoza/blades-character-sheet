@@ -131,7 +131,7 @@ window.addEventListener('DOMContentLoaded', function()
 			errorMessage: null,
 			currentCharacter: 0,
 			characters: [],
-			showCharacterSelect: false,
+			showMenu: false,
 		},
 		
 		computed:
@@ -157,6 +157,12 @@ window.addEventListener('DOMContentLoaded', function()
 				}
 				
 				return null;
+			},
+			
+			//Returns a data URI for downloading the character data.
+			dataURI: function()
+			{
+				return 'data:text/json;base64,' + window.btoa(JSON.stringify(this.characters));
 			}
 		},
 		
@@ -176,6 +182,8 @@ window.addEventListener('DOMContentLoaded', function()
 			
 			if(!this.currentCharacter) this.currentCharacter = 0;
 			if(!this.characters) this.addCharacter();
+			
+			document.getElementById('data-import').style.opacity = 0;
 		},
 		
 		methods:
@@ -222,6 +230,7 @@ window.addEventListener('DOMContentLoaded', function()
 				if(!Array.isArray(this.characters)) this.characters = [];
 				this.characters.push(character);
 				this.currentCharacter = this.characters.length - 1;
+				this.showMenu = false;
 			},
 			
 			//Deletes the current character.
@@ -362,9 +371,9 @@ window.addEventListener('DOMContentLoaded', function()
 			},
 			
 			//Shows or hides the character select menu.
-			toggleCharacterSelect: function(event)
+			toggleMenu: function(event)
 			{
-				this.showCharacterSelect = !this.showCharacterSelect;
+				this.showMenu = !this.showMenu;
 				if(event) event.preventDefault();
 			},
 			
@@ -372,7 +381,25 @@ window.addEventListener('DOMContentLoaded', function()
 			selectCharacter: function(index)
 			{
 				this.currentCharacter = index;
-				this.showCharacterSelect = false;
+				this.showMenu = false;
+			},
+			
+			importData: function()
+			{
+				var files = document.getElementById('data-import').files;
+				
+				if(files.length > 0)
+				{
+					var reader = new FileReader();
+					
+					reader.onload = function(event)
+					{
+						this.characters = JSON.parse(reader.result);
+						this.currentCharacter = 0;
+					}
+					
+					reader.readAsText(files[0]);
+				}
 			},
 		}
 	});
