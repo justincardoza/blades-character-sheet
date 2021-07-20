@@ -6,16 +6,11 @@ const resources =
 {
 	'/': 'index.html',
 	'/vue.js': 'node_modules/vue/dist/vue.js',
+	'/vue.min.js': 'node_modules/vue/dist/vue.min.js',
 	'/main.js': 'main.js',
 	'/main.css': 'main.css',
 };
 
-//process.stdin.setRawMode(true);
-//process.stdin.resume();
-process.stdin.on('data', data => 
-{
-	if(data.toString().trim().startsWith('q')) process.exit(0);
-});
 
 server.on('request', handleRequest);
 server.on('listening', () => console.log('Web server listening.'));
