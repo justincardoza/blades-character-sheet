@@ -111,6 +111,22 @@
 										v-model="characters[currentCharacter].backgroundDescription" />
 								</div>
 							</div>
+							
+							<div class="basic-field wide-basic-field">
+								<label for="character-vice-description">Vice</label>
+								<div class="row">
+									<select v-model="characters[currentCharacter].viceType">
+										<option value="faith">Faith</option>
+										<option value="gambling">Gambling</option>
+										<option value="luxury">Luxury</option>
+										<option value="obligation">Obligation</option>
+										<option value="pleasure">Pleasure</option>
+										<option value="stupor">Stupor</option>
+										<option value="weird">Weird</option>
+									</select>
+									<input type="text" id="character-vice-description" v-model="characters[currentCharacter].viceDescription" />
+								</div>
+							</div>
 						</section>
 					
 						<section>
