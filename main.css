@@ -465,6 +465,18 @@ td, th
 	border-top: 1px dotted gray;
 }
 
+.project-text-fields
+{
+	flex-grow: 1;
+	margin: 0 0.5em;
+}
+
+.project-text-fields *
+{
+	width: 100%;
+	margin-bottom: 0.25em;
+}
+
 td input
 {
 	width: 100%;

@@ -370,6 +370,15 @@ window.addEventListener('DOMContentLoaded', function()
 				}
 			},
 			
+			//Deletes a project for the current character.
+			deleteProject: function(index)
+			{
+				if(this.currentCharacter >= 0 && this.currentCharacter < this.characters.length && index >= 0 && index < this.characters[this.currentCharacter].projects.length)
+				{
+					this.characters[this.currentCharacter].projects.splice(index, 1);
+				}
+			},
+			
 			//Shows or hides the character select menu.
 			toggleMenu: function(event)
 			{

@@ -349,7 +349,7 @@
 								<h2>Projects</h2>
 								<button v-on:click="addProject">Add Project</button>
 							</div>
-							<div class="project row" v-for="(project, index) in characters[currentCharacter].projects" v-bind:key="index">
+							<div class="project spaced-row" v-for="(project, index) in characters[currentCharacter].projects" v-bind:key="index">
 								<div>
 									<clock v-bind:max="project.clockSegments"
 										v-model="characters[currentCharacter].projects[index].progress">
@@ -364,17 +364,20 @@
 										</select>
 									</div>
 								</div>
-								<div>
+								<div class="project-text-fields">
 									<div><input type="text" v-model="characters[currentCharacter].projects[index].projectName"
 											placeholder="Project name" /></div>
 									<div><textarea v-model="characters[currentCharacter].projects[index].description"
 											placeholder="Description"></textarea></div>
 								</div>
+								<div><button v-on:click="deleteProject(index)">&times;</button></div>
 							</div>
 						</section>
 					</div>
 					
-					<div class="character-sheet-second-column">
+					<div class="character-sheet-second-column"></div>
+					
+					<div class="character-sheet-third-column">
 						<section>
 							<h2>Settings</h2>
 							<button v-on:click="deleteCharacter">Delete Character</button>
