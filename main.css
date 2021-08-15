@@ -483,6 +483,12 @@ td input
 }
 
 
+textarea
+{
+	resize: vertical;
+}
+
+
 /* Styles for small devices. */
 @media (max-width: 8in)
 {
